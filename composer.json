@@ -1,0 +1,21 @@
+{
+    "name": "bredabeds/magento-email-attachments",
+    "description": "Magento 2 module for adding attachments to emails by BredaBeds",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Dustin",
+            "email": "dustin@bredabeds.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "BredaBeds\\EmailAttachments\\": ""
+        }
+    }
+}
