@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BredaBeds\EmailAttachments\Model\Mail\Template;
 
+// https://magento.stackexchange.com/questions/252506/magento-2-3-custom-email-attachment-not-working/297997#297997
+
 use Magento\Framework\HTTP\Mime; // As an alternative to Laminas\Mime\Mime or Magento\Framework\Mail\MimeInterface
 use Laminas\Mime\Part as MimePart;
 use Laminas\Mime\Message as MimeMessage;
@@ -42,12 +44,14 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
             if (is_string($attachment)) {
                 $path = $attachment;
                 $type = mime_content_type($path) ?: Mime::TYPE_OCTETSTREAM;
+                $filename = basename($path);
             } else {
                 $path = $attachment['path'] ?? '';
                 $type = $attachment['type'] ?? (mime_content_type($path) ?: Mime::TYPE_OCTETSTREAM);
+                $filename = $attachment['filename'] ?? basename($path);
             }
 
-            if (!empty($path) && file_exists($path)) $this->addAttachment(file_get_contents($path), basename($path), $type);
+            if (!empty($path) && file_exists($path)) $this->addAttachment(file_get_contents($path), $filename, $type);
         }
         // Handle attachments via templateVars END
 

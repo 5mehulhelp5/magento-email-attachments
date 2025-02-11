@@ -13,10 +13,14 @@ Method 1 (template variables):
 
 Method 2 (template variables):
 ```php
+// 'type' and 'filename' are optional
+// If 'type' is not set, mime_content_type is used to guess
+// If 'filename' is not set, the filename from the path is used
 ->setTemplateVars([
     'attachments' => [
         'path' => '/path/to/document.xlsx',
-        'type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        'type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'filename' => 'Document.xlsx'
     ]
 ])
 ```
@@ -28,7 +32,8 @@ Method 3 (template variables):
         '/path/to/document1.pdf',
         [
             'path' => '/path/to/document2.xlsx',
-            'type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            'type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // optional
+            'filename' => 'document2.xlsx' // optional
         ],
         '/path/to/document3.docx'
     ]
