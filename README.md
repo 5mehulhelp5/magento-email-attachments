@@ -62,7 +62,7 @@ $transport->getTransport()->sendMessage();
 ```
 
 ## Browserless PDF generation and basic email template
-This module also has the ability to generate a PDF via Browserless from a URL. This also has a very basic template called "simple_text_email" that allows the body and subject to be set via template variables (see above example). This module has a wrapper helper for that template:
+This module also has the ability to generate a PDF via Browserless from a URL and it has a very basic template called "simple_text_email" that allows the body and subject to be set via template variables (see above example). This module has a wrapper helper for that template:
 ```php
 public function __construct(
     protected \BredaBeds\EmailAttachments\Helper\SendBasicEmail $sendBasicEmail,
@@ -78,15 +78,15 @@ protected function sendTestEmail()
     ); // Saves a PDF to: "/path/to/magento/var/pdf/files/google.pdf"
 
     $this->sendBasicEmail->sendEmail(
-        'test@example.com',
-        'Your PDF Document',
-        'Your PDF document is attached. Please contact us if you have any questions or concerns.',
-        [$absolutePath] // Sets attachments via template variables, see methods 1-3 above.
+        'test@example.com',     // To
+        'Your PDF Document',    // Subject
+        'Your PDF document is attached. Please contact us if you have any questions or concerns.',  // Body
+        [$absolutePath] // Optional: Sets attachments via template variables, see methods 1-3 above.
     ); // Sends an email with the previously saved PDF
 }
 ```
 For Browserless to work, add to the ./app/etc/env.php file:
-```json
+```
 'bredabeds' => [
     'browserless' => [
         'endpoint' => '127.0.0.1:3000',
