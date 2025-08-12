@@ -14,7 +14,7 @@ class Browserless
         protected \Magento\Framework\Filesystem $filesystem
     ) { }
 
-    public function generatePdfFromUrl(string $url, string $filename, string $savePath = null)
+    public function generatePdfFromUrl(string $url, string $filename, ?string $savePath = null)
     {
         try {
             return $this->savePdf($this->generatePdf($url), $savePath, $filename); // Return absolute path
